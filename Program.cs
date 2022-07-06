@@ -24,4 +24,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+builder.Services.AddHttpClient("swapi",client=>{
+	client.BaseAddress = new Uri("https://swapi.dev/api/");
+}); 
+
 app.Run();
