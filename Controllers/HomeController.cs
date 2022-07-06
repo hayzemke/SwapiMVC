@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SwapiMVC.Models;
 
-namespace SwapiMVC.Controllers;
-
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private static Random _random = new Random();
 
     public HomeController(ILogger<HomeController> logger)
     {
@@ -15,7 +14,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        string[] names = new[] { "Haley", "John", "Jess", "Lanie" };
+        string name = names[_random.Next(0, names.Length)];
+        return View(model: name);
     }
 
     public IActionResult Privacy()
