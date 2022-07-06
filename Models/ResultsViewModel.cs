@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
+namespace SwapiMVC.Models;
+
     public class ResultsViewModel<TResult>
     {   
         [JsonPropertyName("count")]
@@ -15,6 +17,7 @@ using System.Threading.Tasks;
         [JsonPropertyName("previous")]
         public string Previous { get; set; }
 
+        [JsonPropertyName("results")]
         public IEnumerable<TResult> Results{ get; set; }
 
         public string NextPageNum => Next?.Split("?page=").LastOrDefault();
