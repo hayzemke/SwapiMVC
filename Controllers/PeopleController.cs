@@ -26,5 +26,18 @@ namespace SwapiMVC.Controllers
 
             return View(people);
         }
+
+        public async Task<IActionResult> Person(string ID)
+        {
+            var response = await _httpClient.GetAsync($"people/{ID}");
+            if (ID is null || response.IsSuccessStatusCode == false)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            var person = JsonSerializer.Deserialize<PeopleViewModel>(responseString);
+            return View(person);
+        }
     }
 }
